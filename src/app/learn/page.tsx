@@ -49,18 +49,24 @@ function LearnContent() {
   const cardRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef(0)
 
+  // Refs to avoid stale closures in keyboard handler
+  const qualityRef = useRef(handleQuality)
+  qualityRef.current = handleQuality
+
   useEffect(() => {
     fetchWords()
-    // Keyboard support
+  }, [])
+
+  // Keyboard support with ref to avoid stale closures
+  useEffect(() => {
     function handleKey(e: KeyboardEvent) {
-      if (finished || submitting) return
-      if (e.key === "ArrowRight") handleQuality(2)
-      if (e.key === "ArrowLeft") handleQuality(0)
-      if (e.key === "ArrowUp" || e.key === " ") handleQuality(1)
+      if (e.key === "ArrowRight") qualityRef.current(2)
+      if (e.key === "ArrowLeft") qualityRef.current(0)
+      if (e.key === "ArrowUp" || e.key === " ") qualityRef.current(1)
     }
     window.addEventListener("keydown", handleKey)
     return () => window.removeEventListener("keydown", handleKey)
-  }, [currentIndex, finished, submitting])
+  }, [])
 
   function handleTouchStart(e: React.TouchEvent) {
     touchStartX.current = e.touches[0].clientX

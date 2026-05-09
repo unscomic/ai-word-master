@@ -92,20 +92,12 @@ export default function WordbooksPage() {
   async function handleSearch() {
     if (!searchQuery.trim() || !activeWordbookId) return
     setSearching(true)
-    const res = await fetch(`/api/wordbooks/${activeWordbookId}?search=${encodeURIComponent(searchQuery)}`)
-    // Search across all words in the database
-    const searchRes = await fetch(`/api/wordbooks/${activeWordbookId}`)
-    if (searchRes.ok) {
-      const data = await searchRes.json()
-      // Find words matching the query from the full word list
-      // We'll search the general word list
+    const wordRes = await fetch(`/api/words/search?q=${encodeURIComponent(searchQuery.trim())}`)
+    if (wordRes.ok) {
+      const wordData = await wordRes.json()
+      setSearchResults(wordData.words || [])
+    } else {
       setSearchResults([])
-      // Use the global word search
-      const wordRes = await fetch(`/api/words/search?q=${encodeURIComponent(searchQuery.trim())}`)
-      if (wordRes.ok) {
-        const wordData = await wordRes.json()
-        setSearchResults(wordData.words || [])
-      }
     }
     setSearching(false)
   }

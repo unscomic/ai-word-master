@@ -108,7 +108,7 @@ export async function POST(request: Request) {
           controller.close()
         } catch (error) {
           console.error("Stream processing error:", error)
-          controller.close()
+          controller.error(error)
         }
       },
     })

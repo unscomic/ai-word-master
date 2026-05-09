@@ -156,7 +156,7 @@ export default function ReviewPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ wordId: current.wordId, quality }),
-    }).catch(() => {})
+    }).catch(() => toast.error("提交复习结果失败"))
 
     setStats((prev) => ({
       ...prev,
@@ -177,7 +177,7 @@ export default function ReviewPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ wordId: current.wordId, quality }),
-    }).catch(() => {})
+    }).catch(() => toast.error("提交复习结果失败"))
 
     setStats((prev) => ({
       ...prev,
@@ -255,7 +255,7 @@ export default function ReviewPage() {
             <BookOpen className="size-3 mr-1" />
             标准
           </TabsTrigger>
-          <TabsTrigger value="choice" className="text-xs" onClick={() => generateOptions(currentWord)}>
+          <TabsTrigger value="choice" className="text-xs">
             <Grid3X3 className="size-3 mr-1" />
             选择
           </TabsTrigger>

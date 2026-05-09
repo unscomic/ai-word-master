@@ -41,9 +41,14 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function load() {
-      const res = await fetch("/api/dashboard")
-      if (res.ok) setData(await res.json())
-      setLoading(false)
+      try {
+        const res = await fetch("/api/dashboard")
+        if (res.ok) setData(await res.json())
+      } catch (e) {
+        console.error("Dashboard load failed:", e)
+      } finally {
+        setLoading(false)
+      }
     }
     load()
   }, [])

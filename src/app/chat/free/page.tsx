@@ -2,12 +2,10 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
 import { toast } from "sonner"
-import { Send, Plus, MessageCircle, Trash2, ChevronRight, Bot, User } from "lucide-react"
+import { Send, Plus, MessageCircle, ChevronRight, Bot, User } from "lucide-react"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 
 interface ChatMessage {
@@ -33,7 +31,7 @@ export default function FreeChatPage() {
   const [historyOpen, setHistoryOpen] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const abortRef = useRef<AbortController | null>(null)
+  const mountedRef = useRef(true)
 
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => {
@@ -45,6 +43,7 @@ export default function FreeChatPage() {
 
   useEffect(() => { scrollToBottom() }, [messages, streamingText, scrollToBottom])
   useEffect(() => { loadSessions() }, [])
+  useEffect(() => { return () => { mountedRef.current = false } }, [])
 
   async function loadSessions() {
     const res = await fetch("/api/chat/free")
@@ -149,7 +148,10 @@ export default function FreeChatPage() {
       const msg = error instanceof Error ? error.message : "发送失败"
       toast.error(msg)
     } finally {
-      setLoading(false)
+      if (mountedRef.current) {
+        setStreamingText("")
+        setLoading(false)
+      }
     }
   }
 
