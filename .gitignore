@@ -34,9 +34,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Prisma
-prisma/*.db
-prisma/*.db-journal
+# Database
+*.db
+*.db-journal
 
 # Sentry
 .sentryclirc

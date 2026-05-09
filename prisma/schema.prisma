@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  password      String
+  name          String?
+  examType      String?        // cet4, cet6, postgrad, ielts, toefl
+  dailyGoal     Int            @default(20)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  wordProgress  WordProgress[]
+  studyLogs     StudyLog[]
+  chatSessions  ChatSession[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Word {
+  id       String         @id @default(cuid())
+  word     String         @unique
+  phonetic String?        // 音标
+  aiContent String?       // AI 生成的完整内容（JSON 字符串缓存）
+  wordbooks WordbookWord[]
+  progress  WordProgress[]
+  studyLogs StudyLog[]
+}
+
+model Wordbook {
+  id          String         @id @default(cuid())
+  name        String
+  description String?
+  isPreset    Boolean        @default(false)
+  words       WordbookWord[]
+}
+
+model WordbookWord {
+  wordbookId String
+  wordId     String
+  word       Word     @relation(fields: [wordId], references: [id], onDelete: Cascade)
+  wordbook   Wordbook @relation(fields: [wordbookId], references: [id], onDelete: Cascade)
+  @@id([wordbookId, wordId])
+}
+
+model WordProgress {
+  id          String    @id @default(cuid())
+  userId      String
+  wordId      String
+  level       Int       @default(0)     // 0=未学, 1=模糊, 2=认识
+  ease        Float     @default(2.5)   // SM-2 ease factor
+  interval    Int       @default(0)     // 复习间隔（天）
+  repetitions Int       @default(0)     // 复习次数
+  nextReview  DateTime  @default(now()) // 下次复习时间
+  lastReview  DateTime?
+  mistakes    Int       @default(0)     // 累计错误次数
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  word        Word      @relation(fields: [wordId], references: [id], onDelete: Cascade)
+  @@unique([userId, wordId])
+}
+
+model StudyLog {
+  id        String   @id @default(cuid())
+  userId    String
+  wordId    String
+  action    String   // learn, review, correct, wrong
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  word      Word     @relation(fields: [wordId], references: [id], onDelete: Cascade)
+}
+
+model ChatSession {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // sentence_practice, scenario, free
+  messages  String   @default("[]") // JSON string
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
