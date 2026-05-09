@@ -1,11 +1,12 @@
 "use client"
 
-import { Suspense, useState, useEffect } from "react"
+import { Suspense, useState, useEffect, useRef } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { WordCard } from "@/components/learn/WordCard"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { toast } from "sonner"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import type { WordContent } from "@/lib/ai/generate"
 
 interface WordItem {
@@ -43,9 +44,42 @@ function LearnContent() {
   const [finished, setFinished] = useState(false)
   const [stats, setStats] = useState({ known: 0, fuzzy: 0, unknown: 0 })
 
+  // Swipe state
+  const [swipeDelta, setSwipeDelta] = useState(0)
+  const cardRef = useRef<HTMLDivElement>(null)
+  const touchStartX = useRef(0)
+
   useEffect(() => {
     fetchWords()
-  }, [])
+    // Keyboard support
+    function handleKey(e: KeyboardEvent) {
+      if (finished || submitting) return
+      if (e.key === "ArrowRight") handleQuality(2)
+      if (e.key === "ArrowLeft") handleQuality(0)
+      if (e.key === "ArrowUp" || e.key === " ") handleQuality(1)
+    }
+    window.addEventListener("keydown", handleKey)
+    return () => window.removeEventListener("keydown", handleKey)
+  }, [currentIndex, finished, submitting])
+
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+    const delta = e.touches[0].clientX - touchStartX.current
+    setSwipeDelta(delta)
+  }
+
+  function handleTouchEnd() {
+    const threshold = 80
+    if (swipeDelta > threshold) {
+      handleQuality(2) // 右滑 = 认识
+    } else if (swipeDelta < -threshold) {
+      handleQuality(0) // 左滑 = 不认识
+    }
+    setSwipeDelta(0)
+  }
 
   async function fetchWords() {
     setLoading(true)
@@ -162,14 +196,51 @@ function LearnContent() {
         <Progress value={progress} />
       </div>
 
-      {/* 单词卡片 */}
+      {/* 单词卡片 + 滑动 */}
       {currentWord && (
-        <WordCard
-          word={currentWord.word}
-          phonetic={currentWord.phonetic}
-          content={currentWord.content}
-        />
+        <div
+          ref={cardRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="relative select-none"
+        >
+          {/* 滑动指示器 */}
+          {Math.abs(swipeDelta) > 20 && (
+            <div className="absolute inset-0 z-10 flex items-center justify-between pointer-events-none px-4">
+              <div
+                className={`rounded-full p-2 transition-opacity ${swipeDelta < 0 ? "opacity-100 bg-red-100 text-red-600" : "opacity-0"}`}
+              >
+                <ChevronLeft className="size-8" />
+              </div>
+              <div
+                className={`rounded-full p-2 transition-opacity ${swipeDelta > 0 ? "opacity-100 bg-emerald-100 text-emerald-600" : "opacity-0"}`}
+              >
+                <ChevronRight className="size-8" />
+              </div>
+            </div>
+          )}
+          <div
+            style={{
+              transform: `translateX(${swipeDelta}px)`,
+              transition: swipeDelta === 0 ? "transform 0.2s ease" : "none",
+            }}
+          >
+            <WordCard
+              word={currentWord.word}
+              phonetic={currentWord.phonetic}
+              content={currentWord.content}
+            />
+          </div>
+        </div>
       )}
+
+      {/* 滑动提示 */}
+      <div className="flex justify-between text-xs text-muted-foreground px-2">
+        <span>← 左滑：不认识</span>
+        <span className="hidden sm:inline">键盘 ← ↑ →</span>
+        <span>右滑：认识 →</span>
+      </div>
 
       {/* 操作按钮 */}
       <div className="grid grid-cols-3 gap-3">
