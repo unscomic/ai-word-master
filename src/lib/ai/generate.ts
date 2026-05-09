@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/db/prisma"
-import { generateAIResponse } from "./client"
+import { generateAIResponse, type AIProvider } from "./client"
 import { buildWordLearningPrompt } from "./prompts"
+import { decrypt } from "@/lib/crypto"
 
 export interface WordContent {
   meaning: { cn: string; en: string }
@@ -17,14 +18,21 @@ export interface WordContent {
   collocations: string[]
 }
 
+interface AIConfig {
+  apiKey?: string | null
+  provider?: string | null
+}
+
 /**
  * 获取单词的 AI 学习内容
  * 优先从数据库缓存读取，没有则调用 AI 生成并缓存
+ * 支持用户自定义 API Key 和模型提供商
  */
 export async function getWordContent(
   wordId: string,
   word: string,
   examType?: string | null,
+  aiConfig?: AIConfig,
 ): Promise<WordContent | null> {
   // 1. 先查缓存
   const existing = await prisma.word.findUnique({
@@ -43,7 +51,23 @@ export async function getWordContent(
   // 2. 调用 AI 生成
   try {
     const prompt = buildWordLearningPrompt(word, examType)
-    const response = await generateAIResponse(prompt, word)
+
+    // 解密用户 API Key
+    let apiKey: string | undefined
+    if (aiConfig?.apiKey) {
+      try {
+        apiKey = decrypt(aiConfig.apiKey)
+      } catch {
+        console.warn("Failed to decrypt user API key")
+      }
+    }
+
+    const provider = (aiConfig?.provider || "claude") as AIProvider
+    const response = await generateAIResponse(prompt, word, {
+      provider,
+      apiKey,
+    })
+
     const content = parseAIResponse(response)
 
     // 3. 缓存到数据库

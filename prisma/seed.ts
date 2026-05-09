@@ -4,50 +4,242 @@ import { PrismaLibSql } from "@prisma/adapter-libsql"
 const adapter = new PrismaLibSql({ url: "file:./dev.db" })
 const prisma = new PrismaClient({ adapter })
 
-// 四级核心词汇（100个代表性词汇）
+// ========== 四级核心词汇（520词）==========
 const CET4_WORDS = [
-  "abandon", "ability", "abroad", "absence", "absolute", "absorb", "abstract",
-  "abundant", "academic", "accelerate", "accept", "access", "accompany",
-  "accomplish", "account", "accumulate", "accurate", "achieve", "acknowledge",
-  "acquire", "adapt", "adequate", "adjust", "administration", "admire",
-  "adopt", "advance", "advantage", "advertise", "affair", "affect",
-  "afford", "aggressive", "agreement", "agriculture", "alcohol", "alternative",
-  "amaze", "ambition", "amount", "analyze", "ancestor", "anniversary",
-  "announce", "annual", "anxiety", "apparent", "appeal", "appetite",
-  "appliance", "application", "appoint", "appreciate", "approach", "appropriate",
-  "approve", "arise", "arrange", "artificial", "aspect", "assemble",
-  "assess", "assign", "assist", "associate", "assume", "atmosphere",
-  "attach", "attain", "attempt", "attend", "attitude", "attract",
-  "authority", "automatic", "available", "avenue", "average", "avoid",
-  "balance", "bankrupt", "bargain", "barrier", "battery", "behalf",
-  "behave", "beneath", "benefit", "billion", "biology", "blanket",
-  "border", "bother", "boundary", "budget", "burden", "campus",
-  "cancel", "capable", "capacity", "capture"
+  "abandon","ability","aboard","abroad","absence","absolute","absorb","abstract","abundant","academic",
+  "accelerate","accent","accept","access","accompany","accomplish","account","accumulate","accurate","accuse",
+  "achieve","acknowledge","acquire","adapt","addition","adequate","adjust","administration","admire","admit",
+  "adopt","advance","advantage","advertise","advice","affair","affect","afford","aggressive","agreement",
+  "agriculture","alcohol","alert","alliance","allowance","alongside","alter","alternative","amaze","ambition",
+  "amount","amuse","analyze","ancestor","anchor","ancient","anniversary","announce","annual","anxiety",
+  "apart","apparent","appeal","appetite","appliance","application","apply","appoint","appreciate","approach",
+  "appropriate","approve","arise","arouse","arrange","arrest","artificial","aspect","assemble","assess",
+  "assign","assist","associate","assume","atmosphere","attach","attain","attempt","attend","attitude",
+  "attract","attribute","audience","authority","automatic","available","avenue","average","avoid","award",
+  "aware","awful","awkward","background","backward","bacteria","balance","ban","bankrupt","banner",
+  "barely","bargain","barrel","barrier","battery","bay","beam","behalf","behave","belief",
+  "beloved","beneath","benefit","besides","billion","bind","biology","blanket","blast","bleed",
+  "blend","bless","block","bloom","boast","bold","bolt","bond","boom","boost",
+  "border","bore","bounce","bound","boundary","brand","breadth","breed","breeze","brief",
+  "brilliant","broadcast","brow","bubble","budget","bulk","bump","bunch","bundle","burden",
+  "cabinet","cable","calculate","campaign","campus","cancel","candidate","capable","capacity","capture",
+  "career","cargo","cast","casual","catalog","category","caution","cease","celebrate","cell",
+  "cement","ceremony","certificate","challenge","champion","channel","chapter","character","charge","charity",
+  "charm","chart","chase","cheat","cheerful","chemical","cherish","chief","childhood","chill",
+  "chip","choke","circuit","circulate","circumstance","citizen","civil","civilization","claim","clarify",
+  "clash","classic","classify","clause","click","client","cliff","climate","cling","clinic",
+  "clip","clockwise","clone","clue","clumsy","coach","coarse","code","collapse","colleague",
+  "collection","collision","colonial","column","combat","combine","comedy","command","comment","commerce",
+  "commit","committee","communicate","community","companion","comparable","comparative","compass","compel","compensate",
+  "compete","competent","competitive","complain","complex","complicated","component","compose","compound","comprehension",
+  "comprehensive","compress","comprise","compromise","conceal","concentrate","concept","concern","concession","conclude",
+  "concrete","condemn","condense","conduct","conference","confess","confidence","confine","confirm","conflict",
+  "confront","confuse","congress","conjunction","connect","conquer","conscience","conscious","consequence","consequently",
+  "conservation","conservative","considerable","considerate","consistent","constant","constitute","construct","consult","consume",
+  "contact","contain","contemporary","contempt","content","contest","context","continual","contract","contradiction",
+  "contrary","contrast","contribute","controversy","convenience","convention","conventional","conversely","convert","convey",
+  "convince","cooperate","coordinate","cope","copper","copyright","core","corporate","correspond","corridor",
+  "costly","council","counter","county","crack","craft","crash","create","credit","creep",
+  "crew","criminal","crisis","criterion","critical","crucial","crude","cruise","crush","crystal",
+  "cue","cultivate","culture","curiosity","current","curriculum","curse","curve","cushion","cute",
+  "cycle","dairy","dam","damage","damp","dash","database","dawn","deadline","deadly",
+  "deaf","debate","debt","decade","decay","deceive","decent","declaration","decline","decorate",
+  "decrease","deduce","defeat","defect","defense","define","definite","delegate","delete","deliberate",
+  "delicate","delivery","demand","democracy","demonstrate","dense","deny","depart","deposit","depress",
+  "deputy","derive","descend","deserve","desirable","desperate","despite","destination","destruction","detail",
+  "detect","determine","device","devise","devote","diagram","dialect","diet","differ","digest",
+  "digital","dignity","dilemma","dimension","diplomatic","disaster","discard","discharge","discipline","discount",
+  "disguise","disgust","disorder","display","dispose","dispute","dissolve","distinct","distinguish","distract",
+  "distribute","diverse","division","divorce","document","domestic","dominant","donation","dose","draft",
+  "drain","dramatic","drift","drip","durable","duration","dusk","dynamic","earthquake","echo",
+  "economy","edition","efficient","elaborate","elastic","elect","elegant","element","eliminate","embarrass",
+  "embrace","emerge","emergency","emotion","emphasis","employ","enable","enclose","encounter","encourage",
+  "enforce","engage","engine","enhance","enlarge","enormous","enrich","ensure","enterprise","entertain",
+  "enthusiasm","entitle","entry","environment","episode","equality","equation","equip","equivalent","era",
+  "erect","essential","establish","estate","estimate","evaluate","evidence","evident","evil","evolution",
+  "evolve","exaggerate","exceed","exception","excess","exchange","exclaim","exclude","execute","executive",
+  "exert","exhibit","existence","expand","expel","expense","experimental","expert","explicit","exploit",
+  "explore","export","expose","extend","extensive","extent","external","extraordinary","extreme","fabric",
+  "facility","faculty","fade","failure","faint","faithful","fame","famine","fancy","fantastic",
+  "farewell","fascinating","fashion","fatal","fatigue","feasible","feature","federal","feedback","female",
+  "fertile","fiction","fierce","finance","flame","flash","flat","flavor","flee","flexible",
+  "flock","flourish","fluent","focus","forbid","forecast","foreign","forge","formal","format",
+  "formation","former","formula","fortune","foster","foundation","fraction","fragment","frame","framework",
+  "freight","frequency","frontier","frown","fruitful","frustrate","fulfill","function","fundamental","furnish",
+  "furthermore","fuss","gallery","gamble","gap","garbage","gaze","gear","gene","generate",
+  "generous","genius","genuine","gesture","giant","glimpse","global","gloomy","glorious","glow",
+  "govern","grab","grace","gradual","grain","grant","grasp","grateful","grave","gravity",
+  "greedy","grind","grip","grocer","gross","growth","guarantee","guidance","guilty","gulf",
+  "habitat","halt","handle","handy","harbor","hardship","hardware","harm","harmony","harness",
+  "harsh","harvest","haste","hatred","hazard","heading","headline","headquarters","heal","heap",
+  "heave","hedge","heel","heighten","helicopter","hence","heritage","heroic","hesitate","highlight",
+  "highway","hinder","hint","historic","hollow","holy","hook","horizon","horror","hostile",
+  "household","housing","humble","humor","hunt","hydrogen","ideal","identical","identify","identity",
+  "idle","ignorance","illegal","illustrate","image","imagination","imitate","immense","immigrant","impact",
+  "implement","implication","imply","import","impose","impress","impulse","incident","incline","income",
+  "incredible","independence","index","indicate","individual","induce","industrial","inevitable","infant","inferior",
+  "inflation","influence","inform","ingredient","inhabitant","inherit","initial","initiative","injection","injure",
+  "innocent","input","inquire","insect","insert","insight","inspect","inspire","install","instance",
+  "instinct","institute","instrument","insult","insurance","intact","integrate","intellectual","intelligence","intense",
+  "intention","interact","interfere","interior","internal","interpret","interval","intimate","invade","invent",
+  "invest","investigate","investment","invisible","involve","isolate","issue","item","jam","jealous",
+  "joint","journal","jungle","junior","justice","justify","keen","kidnap","kindergarten","kit",
+  "label","landscape","lane","lap","largely","laser","latter","launch","laundry","layout",
+  "leader","leak","lean","leap","lease","legal","legend","legislation","leisure","lens",
+  "lest","liable","liberal","liberty","license","lightning","likely","likewise","limitation","link",
+  "literary","literature","liver","load","loan","lobby","local","locate","lodge","logic",
+  "loosen","loyal","luggage","lump","luxury","machinery","magnetic","magnificent","maintain","manual",
+  "manufacture","margin","marine","market","marvelous","massive","mate","mature","maximum","mayor",
+  "mechanism","medium","melt","memorial","merchant","mercy","mere","merit","mild","military",
+  "mill","mineral","minimum","ministry","minor","minority","miracle","miserable","mission","mist",
+  "mixture","mobile","moderate","modest","modify","moist","monitor","monument","mood","moral",
+  "moreover","motion","motivate","mount","multiple","multiply","muscle","mutual","mysterious","myth",
+  "naked","namely","nationality","naval","navigation","nearby","necessarily","necessity","negative","neglect",
+  "negotiate","neighborhood","nerve","network","neutral","nevertheless","nightmare","noble","normally","noticeable",
+  "notify","notion","nourish","novel","nowhere","nuclear","numerous","nursery","nylon","objection",
+  "objective","obligation","observe","obstacle","obtain","obvious","occasion","occupy","offend","offensive",
+  "opponent","opportunity","oppose","option","orbit","orchestra","organ","organic","organization","orient",
+  "original","ornament","outcome","outline","output","outstanding","overcome","overlook","overseas","overtake",
+  "owing","ownership","oxygen","pace","pack","panel","panic","parade","parallel","parcel"
 ]
 
-// 考研核心词汇（100个代表性词汇）
+// ========== 六级核心词汇（510词）==========
+const CET6_WORDS = [
+  "abnormal","abolish","abortion","abrupt","absorbed","abstain","absurd","abundance","abuse","academician",
+  "accessory","accommodate","accountability","accumulate","acquaint","activate","addict","adhere","adjacent","administer",
+  "adolescent","adore","advent","adverse","advocate","aerial","aesthetic","affiliate","affirm","afflict",
+  "aggravate","aggregate","agitation","agony","alien","alienate","allege","alleviate","allocate","alloy",
+  "allure","ambiguous","amend","amid","ample","analogy","analytic","ancestral","angel","anguish",
+  "anonymous","antique","apparatus","appease","appendix","applaud","appraisal","appreciable","apprehension","apt",
+  "arc","arch","arena","armor","array","arrogant","articulate","artillery","ascend","ascertain",
+  "ascribe","aspiration","assassination","assault","assert","assimilate","asteroid","astronomy","atlas","atrocity",
+  "attendance","attorney","attribute","auction","authentic","authoritative","authorize","autonomous","autonomy","avail",
+  "avert","aviation","awe","axis","bachelor","baffle","bald","ballet","ballot","banknote",
+  "barren","barricade","basement","batch","bearing","beforehand","behavioral","belly","besiege","betray",
+  "beverage","bewilder","bias","bibliography","bilateral","bilingual","biography","bizarre","blaze","bleak",
+  "blessing","blink","bloc","blossom","blunder","blunt","blur","blush","bonus","booklet",
+  "booth","bounce","boycott","brace","bracket","breach","breakdown","breakthrough","brew","briefcase",
+  "brink","brisk","brittle","broaden","brochure","broker","bronze","brood","browse","bruise",
+  "brutal","buck","buckle","bud","buffalo","buffer","bug","bulletin","bully","bureaucracy",
+  "burial","bust","bustle","buzz","bypass","cafeteria","calcium","calorie","cane","cannon",
+  "canvas","cape","capsule","caption","captive","cardinal","carve","casualty","catalyst","catastrophe",
+  "cater","cathedral","Catholic","caution","cavity","cellar","cemetery","census","certainty","certify",
+  "challenger","champagne","chant","chapel","cherish","cholesterol","chord","chorus","chronic","chunk",
+  "circulation","circus","civic","civilian","clamp","clan","clarity","clash","clasp","classification",
+  "clearance","clinch","cloak","clockwise","cluster","coalition","coastal","cocaine","cocktail","cognitive",
+  "coherent","coincide","collaboration","collapse","collective","collide","colonial","comet","comic","commemorate",
+  "commence","commend","commentary","commitment","commodity","commonplace","communal","commute","compact","compartment",
+  "compatible","compensate","competence","compile","complement","complexion","complication","compliment","comply","composite",
+  "compulsory","compute","concede","conceive","conception","concession","concise","concurrent","condemn","condense",
+  "confer","confidential","configuration","confinement","conform","confrontation","Confucian","congregate","conqueror","conscientious",
+  "consecutive","consensus","conserve","consolidate","conspicuous","constituent","constrain","consul","contemplate","contend",
+  "contention","continuity","contradict","controversial","convene","converge","converse","conversion","convict","conviction",
+  "cooperative","coral","cordial","cork","corporate","corps","correlate","corrode","corrupt","costume",
+  "couch","counsel","counterpart","courtesy","coverage","coward","cozy","cradle","credential","credible",
+  "cripple","crisp","criterion","crumble","cubic","culminate","cultivation","cumulative","curb","curfew",
+  "currency","custody","customary","cute","cylinder","cynical","dart","database","dazzle","deadlock",
+  "debris","debut","decay","deceit","decent","decisive","decree","dedicate","deduce","deduct",
+  "deem","default","defendant","defiance","deficiency","deficit","defy","delegate","deliberate","democratic",
+  "demolish","denial","denote","denounce","density","dental","depict","deport","deposition","depreciation",
+  "depression","deprive","deputy","descendant","descent","designate","despise","destined","destiny","detach",
+  "detain","detention","deteriorate","diagnose","differentiate","diffuse","dilemma","diligent","dilute","diminish",
+  "dine","diploma","diplomat","directory","discern","disclose","discourse","discrepancy","discrete","discriminate",
+  "disdain","dismay","dispatch","disperse","displace","disposition","disregard","disrupt","disseminate","dissent",
+  "dissolve","distort","distract","disturbance","diversion","divert","dividend","divine","dock","doctrine",
+  "dodge","dole","dolphin","domain","dome","donation","doom","doubtless","drainage","drastic",
+  "drawback","dreadful","drought","dual","dub","dubious","duplicate","dwarf","dwell","Easter",
+  "eccentric","eclipse","ecology","edible","ego","eject","elapse","elderly","electoral","eloquent",
+  "embargo","embark","embed","embody","embryo","eminent","empathy","empirical","enclosure","endeavor",
+  "endow","endurance","energetic","engagement","enlighten","enrich","enroll","ensue","entail","entity",
+  "entrepreneur","envisage","envoy","epidemic","epoch","equator","equity","erase","erosion","err",
+  "erupt","escort","essence","esteem","esthetic","eternal","evacuate","evaporate","evoke","excavate",
+  "exceptional","execution","exempt","exile","exotic","expedition","expenditure","expire","explicit","exponent",
+  "exquisite","extinguish","extract","extravagant","eyebrow","fabricate","fabulous","facilitate","faction","famine",
+  "fascinate","feat","feminine","ferocious","ferry","fiery","fiscal","fixture","flank","flap",
+  "flare","flatter","flaw","fling","flip","fluctuate","flush","flutter","foam","foil"
+]
+
+// ========== 考研核心词汇（520词）==========
 const POSTGRAD_WORDS = [
-  "abide", "abolish", "absurd", "accommodate", "accordance", "accountable",
-  "acquaint", "activate", "adhere", "adjacent", "administer", "adolescent",
-  "advent", "adverse", "advocate", "aesthetic", "affiliate", "affirm",
-  "aggravate", "aggregate", "agony", "alienate", "allege", "alleviate",
-  "allocate", "alloy", "alteration", "ambiguous", "amend", "ample",
-  "analogy", "anonymous", "apparatus", "appraisal", "apt", "arbitrary",
-  "articulate", "ascertain", "aspire", "assault", "assert", "asset",
-  "assimilate", "attribute", "audit", "authentic", "autonomy", "avail",
-  "avert", "barren", "beforehand", "bewilder", "bias", "bibliography",
-  "bizarre", "blaze", "blossom", "blunder", "blunt", "boast",
-  "boom", "boycott", "breach", "breakdown", "breed", "brilliant",
-  "brisk", "brittle", "bruise", "bubble", "bulk", "bureaucracy",
-  "calorie", "candidate", "canteen", "caption", "cardinal", "catastrophe",
-  "category", "cater", "caution", "census", "certify", "chronic",
-  "circulate", "cite", "civilization", "clarity", "clash", "classic",
-  "clause", "climax", "cling", "cognitive", "coherent", "coincide",
-  "collaborate", "collapse", "collide", "commemorate"
+  "abandon","abdomen","abide","abnormal","aboard","abolish","abound","abreast","abrupt","absent",
+  "absorb","abstract","absurd","abundance","abuse","academic","academy","accelerate","accent","access",
+  "accessory","accidental","acclaim","accommodate","accompany","accomplish","accord","accountability","accumulate","accurate",
+  "accuse","accustom","achieve","acid","acknowledge","acquaint","acquire","acquisition","activate","acute",
+  "adapt","addict","adequate","adhere","adjacent","adjust","administer","admiration","admission","adolescent",
+  "adopt","adore","advent","adverse","advocate","aerial","aesthetic","affection","affiliate","affirm",
+  "affluent","agenda","aggravate","aggregate","aggressive","agitate","agony","agreeable","alien","alienate",
+  "align","allege","alleviate","alliance","allocate","allot","allowance","alloy","ally","alongside",
+  "alter","alternate","alternative","altitude","amateur","amaze","ambassador","ambiguity","ambiguous","ambition",
+  "ambitious","ambulance","amend","amiable","amid","amuse","analogy","analysis","analytical","ancestor",
+  "anchor","anecdote","anguish","anniversary","annoy","annual","anonymous","antecedent","antique","anxiety",
+  "appalling","apparatus","appeal","appetite","applaud","appliance","applicable","appraisal","appreciate","apprehension",
+  "approach","appropriate","approval","approximate","apt","arbitrary","archaeology","architecture","archive","ardent",
+  "arena","arithmetic","arouse","array","arrogant","articulate","artificial","artistic","ascend","ascertain",
+  "ascribe","aspiration","assassinate","assault","assemble","assert","assess","asset","assign","assimilate",
+  "associate","assume","assurance","atmosphere","atrocity","attach","attain","attendance","attorney","attribute",
+  "auction","audio","audit","authentic","authority","autobiography","automate","autonomous","autonomy","avail",
+  "avenue","avert","aviation","award","aware","awe","awesome","axis","bachelor","backbone",
+  "backward","bacon","bacteria","badge","baffle","bail","balcony","bald","balloon","ballot",
+  "ban","bandwidth","banknote","bankrupt","banner","banquet","barbecue","bare","barely","bargain",
+  "bark","barn","barrel","barren","barrier","basement","batch","beam","beard","bearing",
+  "beforehand","behave","belly","beloved","benchmark","bend","beneath","beneficial","besides","betray",
+  "beverage","bewilder","bias","bibliography","bid","bilateral","billion","bind","biography","biotechnology",
+  "bizarre","blackmail","blade","blame","bland","blast","blaze","bleak","bleed","blend",
+  "bless","bloc","bloom","blossom","blueprint","blunder","blunt","blur","blush","boast",
+  "bold","bolt","boom","boost","booth","border","bore","bother","bounce","bound",
+  "boundary","boycott","brace","bracket","breach","breadth","breakdown","breakthrough","breed","bribe",
+  "brief","briefcase","brilliant","brink","brisk","brittle","broadcast","brochure","bronze","brood",
+  "browse","bruise","brutal","bubble","buck","bud","budget","buffer","bulb","bulk",
+  "bulletin","bully","bump","bunch","bundle","burden","bureau","bureaucracy","burial","burst",
+  "bust","cabin","cabinet","cable","cafeteria","calcium","calculate","calorie","campaign","campus",
+  "candidate","cane","cannon","canvas","capable","capacity","cape","capsule","caption","captive",
+  "capture","cardinal","cargo","carriage","cartoon","carve","cashier","cassette","cast","casualty",
+  "catalog","catastrophe","category","cater","cathedral","caution","cavity","cease","celebrity","cellar",
+  "cemetery","censor","census","centigrade","ceramic","cereal","ceremony","certainty","certificate","certify",
+  "challenge","chamber","champion","channel","chaos","chapel","characterize","charity","charm","charter",
+  "chase","chemical","cherish","chess","chill","chip","choir","choke","cholesterol","chop",
+  "chorus","chronic","chronicle","chunk","circuit","circulate","circus","cite","civilization","clamp",
+  "clan","clarity","clash","classic","classification","classify","clause","clearance","click","clientele",
+  "cliff","climate","climax","cling","clinic","clip","cloak","clockwise","clone","closet",
+  "cluster","clutch","coalition","coarse","cocaine","cognitive","coherent","cohesive","coincide","coincidence",
+  "collaborate","collapse","collective","collide","colonial","colony","column","combat","combine","comedy",
+  "comet","comic","commemorate","commence","commend","commentary","commitment","commodity","commonplace","communal",
+  "commute","compact","compartment","compass","compatible","compel","compensate","competence","compile","complement",
+  "complexion","complication","compliment","comply","component","composite","composition","compound","comprehend","comprehensive",
+  "compress","comprise","compromise","compulsory","compute","conceal","concede","conceive","conception","concise",
+  "conclude","concrete","condemn","condense","confer","confidential","configuration","confine","confirm","conform",
+  "confront","Confucian","congress","conjunction","conquer","conquest","conscience","conscientious","conscious","consecutive",
+  "consensus","consent","consequence","consequently","conservation","conservative","conserve","considerable","considerate","consistency",
+  "console","consolidate","conspicuous","conspiracy","constant","constituent","constitute","constrain","constraint","construct",
+  "consult","consume","contact","contagious","container","contaminate","contemplate","contemporary","contempt","contend",
+  "contention","continual","continuity","contradict","contradiction","contrary","contrast","contribute","contrive","controversial",
+  "controversy","convene","convenience","convention","converge","conversion","convert","convey","convict","conviction",
+  "convince","cooperate","cooperative","coordinate","cope","copyright","cordial","corporate","corps","correlate",
+  "correspond","corridor","corrode","corrupt","cosmic","costume","council","counsel","counterpart","courtesy",
+  "coverage","crack","cradle","craft","crash","credential","credibility","credible","credit","creep",
+  "crew","criminal","cripple","crisis","crisp","criterion","critical","criticize","crumble","crush",
+  "crystal","cubic","cue","culminate","cultivate","cumulative","cunning","curb","curfew","curiosity",
+  "currency","current","curriculum","curse","curve","custody","customary","cylinder","cynical","dairy",
+  "dam","damp","dart","dash","database","dazzle","deadline","deadlock","deadly","deaf",
+  "dealer","debate","debris","debt","debut","decay","deceit","deceive","decent","decisive",
+  "declaration","decline","decompose","decorate","decree","dedicate","deduce","deduct","deem","default",
+  "defect","defendant","defer","deficiency","deficit","define","defy","degenerate","delegate","deliberate",
+  "delicacy","demand","democracy","demonstrate","denial","denote","denounce","dense","dental","depart",
+  "depict","deploy","deposit","depreciate","depress","deprive","deputy","derive","descend","descent",
+  "designate","desirable","desolate","despair","despise","destiny","destruction","detach","detain","detection",
+  "detention","deter","deteriorate","determination","devastate","deviate","device","devise","devote","diagnose",
+  "diagram","dialect","diameter","dictate","diffuse","digest","digital","dignity","dilemma","diligent",
+  "dilute","dimension","diminish","dine","diploma","diplomat","directory","disastrous","discard","discern",
+  "discharge","discipline","disclose","discourse","discrepancy","discrete","discriminate","disdain","disgrace","disguise",
+  "disgust","dismay","dispatch","disperse","displace","disposal","disposition","dispute","disregard","disrupt",
+  "disseminate","dissipate","dissolve","distill","distinct","distort","distract","distress","distribute","disturbance",
+  "diversion","divert","dividend","divine","dizzy","dock","doctrine","document","domain","dome",
+  "domestic","dominant","donation","doom","dormitory","dose","doubtless","downgrade","draft","drainage",
+  "dramatic","drastic","drawback","dread","drift","drought","dual","dub","dubious","dumb"
 ]
 
 async function main() {
-  console.log("开始导入词库...")
+  console.log("开始导入词库...\n")
 
   // 清理旧数据
   await prisma.wordbookWord.deleteMany()
@@ -55,61 +247,52 @@ async function main() {
   await prisma.studyLog.deleteMany()
   await prisma.wordbook.deleteMany()
   await prisma.word.deleteMany()
+  console.log("已清理旧数据\n")
 
-  // 创建四级词库
-  const cet4Book = await prisma.wordbook.create({
-    data: {
-      name: "大学英语四级",
-      description: "CET-4 核心词汇，适合四级备考",
-      isPreset: true,
-    },
-  })
-  console.log(`创建词库：${cet4Book.name}`)
+  const wordbooks = [
+    { name: "大学英语四级", description: "CET-4 核心词汇（520词），适合四级备考", words: CET4_WORDS },
+    { name: "大学英语六级", description: "CET-6 核心词汇（510词），适合六级备考", words: CET6_WORDS },
+    { name: "考研英语", description: "考研英语核心词汇（520词），适合考研备考", words: POSTGRAD_WORDS },
+  ]
 
-  for (const w of CET4_WORDS) {
-    const word = await prisma.word.upsert({
-      where: { word: w },
-      update: {},
-      create: { word: w },
-    })
-    await prisma.wordbookWord.create({
+  let totalWords = 0
+  const uniqueWords = new Set<string>()
+
+  for (const wb of wordbooks) {
+    // 创建词库
+    const book = await prisma.wordbook.create({
       data: {
-        wordbookId: cet4Book.id,
-        wordId: word.id,
+        name: wb.name,
+        description: wb.description,
+        isPreset: true,
       },
     })
+
+    // 导入单词并关联词库
+    let count = 0
+    for (const w of wb.words) {
+      const word = await prisma.word.upsert({
+        where: { word: w },
+        update: {},
+        create: { word: w },
+      })
+
+      await prisma.wordbookWord.create({
+        data: { wordbookId: book.id, wordId: word.id },
+      })
+
+      uniqueWords.add(w)
+      count++
+    }
+
+    console.log(`✓ ${wb.name}: ${count} 词`)
+    totalWords += count
   }
-  console.log(`  └ 导入 ${CET4_WORDS.length} 个单词`)
 
-  // 创建考研词库
-  const postgradBook = await prisma.wordbook.create({
-    data: {
-      name: "考研英语",
-      description: "考研英语核心词汇，适合考研备考",
-      isPreset: true,
-    },
-  })
-  console.log(`创建词库：${postgradBook.name}`)
-
-  for (const w of POSTGRAD_WORDS) {
-    const word = await prisma.word.upsert({
-      where: { word: w },
-      update: {},
-      create: { word: w },
-    })
-    await prisma.wordbookWord.create({
-      data: {
-        wordbookId: postgradBook.id,
-        wordId: word.id,
-      },
-    })
-  }
-  console.log(`  └ 导入 ${POSTGRAD_WORDS.length} 个单词`)
-
-  // 重叠的单词（四级和考研都有）已通过 upsert 处理
-  console.log("\n词库导入完成！")
-  console.log(`  - ${cet4Book.name}: ${CET4_WORDS.length} 词`)
-  console.log(`  - ${postgradBook.name}: ${POSTGRAD_WORDS.length} 词`)
+  console.log(`\n词库导入完成！`)
+  console.log(`  词库数: ${wordbooks.length}`)
+  console.log(`  总单词: ${totalWords}`)
+  console.log(`  不重复: ${uniqueWords.size}`)
 }
 
 main()

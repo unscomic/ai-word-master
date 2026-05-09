@@ -82,6 +82,8 @@ export const UserScalarFieldEnum = {
   name: 'name',
   examType: 'examType',
   dailyGoal: 'dailyGoal',
+  apiKey: 'apiKey',
+  aiProvider: 'aiProvider',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

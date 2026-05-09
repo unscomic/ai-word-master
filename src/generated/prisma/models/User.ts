@@ -41,6 +41,8 @@ export type UserMinAggregateOutputType = {
   name: string | null
   examType: string | null
   dailyGoal: number | null
+  apiKey: string | null
+  aiProvider: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -52,6 +54,8 @@ export type UserMaxAggregateOutputType = {
   name: string | null
   examType: string | null
   dailyGoal: number | null
+  apiKey: string | null
+  aiProvider: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -63,6 +67,8 @@ export type UserCountAggregateOutputType = {
   name: number
   examType: number
   dailyGoal: number
+  apiKey: number
+  aiProvider: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -84,6 +90,8 @@ export type UserMinAggregateInputType = {
   name?: true
   examType?: true
   dailyGoal?: true
+  apiKey?: true
+  aiProvider?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -95,6 +103,8 @@ export type UserMaxAggregateInputType = {
   name?: true
   examType?: true
   dailyGoal?: true
+  apiKey?: true
+  aiProvider?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -106,6 +116,8 @@ export type UserCountAggregateInputType = {
   name?: true
   examType?: true
   dailyGoal?: true
+  apiKey?: true
+  aiProvider?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -204,6 +216,8 @@ export type UserGroupByOutputType = {
   name: string | null
   examType: string | null
   dailyGoal: number
+  apiKey: string | null
+  aiProvider: string | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -238,6 +252,8 @@ export type UserWhereInput = {
   name?: Prisma.StringNullableFilter<"User"> | string | null
   examType?: Prisma.StringNullableFilter<"User"> | string | null
   dailyGoal?: Prisma.IntFilter<"User"> | number
+  apiKey?: Prisma.StringNullableFilter<"User"> | string | null
+  aiProvider?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   wordProgress?: Prisma.WordProgressListRelationFilter
@@ -254,6 +270,8 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   examType?: Prisma.SortOrderInput | Prisma.SortOrder
   dailyGoal?: Prisma.SortOrder
+  apiKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiProvider?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   wordProgress?: Prisma.WordProgressOrderByRelationAggregateInput
@@ -273,6 +291,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringNullableFilter<"User"> | string | null
   examType?: Prisma.StringNullableFilter<"User"> | string | null
   dailyGoal?: Prisma.IntFilter<"User"> | number
+  apiKey?: Prisma.StringNullableFilter<"User"> | string | null
+  aiProvider?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   wordProgress?: Prisma.WordProgressListRelationFilter
@@ -289,6 +309,8 @@ export type UserOrderByWithAggregationInput = {
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   examType?: Prisma.SortOrderInput | Prisma.SortOrder
   dailyGoal?: Prisma.SortOrder
+  apiKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  aiProvider?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -308,6 +330,8 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   examType?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   dailyGoal?: Prisma.IntWithAggregatesFilter<"User"> | number
+  apiKey?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  aiProvider?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -319,6 +343,8 @@ export type UserCreateInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
@@ -335,6 +361,8 @@ export type UserUncheckedCreateInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
@@ -351,6 +379,8 @@ export type UserUpdateInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
@@ -367,6 +397,8 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
@@ -383,6 +415,8 @@ export type UserCreateManyInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -394,6 +428,8 @@ export type UserUpdateManyMutationInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -405,6 +441,8 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -416,6 +454,8 @@ export type UserCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   examType?: Prisma.SortOrder
   dailyGoal?: Prisma.SortOrder
+  apiKey?: Prisma.SortOrder
+  aiProvider?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -431,6 +471,8 @@ export type UserMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   examType?: Prisma.SortOrder
   dailyGoal?: Prisma.SortOrder
+  apiKey?: Prisma.SortOrder
+  aiProvider?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -442,6 +484,8 @@ export type UserMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   examType?: Prisma.SortOrder
   dailyGoal?: Prisma.SortOrder
+  apiKey?: Prisma.SortOrder
+  aiProvider?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -552,6 +596,8 @@ export type UserCreateWithoutAccountsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
@@ -567,6 +613,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
@@ -598,6 +646,8 @@ export type UserUpdateWithoutAccountsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
@@ -613,6 +663,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
@@ -628,6 +680,8 @@ export type UserCreateWithoutSessionsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
@@ -643,6 +697,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
@@ -674,6 +730,8 @@ export type UserUpdateWithoutSessionsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
@@ -689,6 +747,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
@@ -704,6 +764,8 @@ export type UserCreateWithoutWordProgressInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   studyLogs?: Prisma.StudyLogCreateNestedManyWithoutUserInput
@@ -719,6 +781,8 @@ export type UserUncheckedCreateWithoutWordProgressInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   studyLogs?: Prisma.StudyLogUncheckedCreateNestedManyWithoutUserInput
@@ -750,6 +814,8 @@ export type UserUpdateWithoutWordProgressInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   studyLogs?: Prisma.StudyLogUpdateManyWithoutUserNestedInput
@@ -765,6 +831,8 @@ export type UserUncheckedUpdateWithoutWordProgressInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   studyLogs?: Prisma.StudyLogUncheckedUpdateManyWithoutUserNestedInput
@@ -780,6 +848,8 @@ export type UserCreateWithoutStudyLogsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
@@ -795,6 +865,8 @@ export type UserUncheckedCreateWithoutStudyLogsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
@@ -826,6 +898,8 @@ export type UserUpdateWithoutStudyLogsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
@@ -841,6 +915,8 @@ export type UserUncheckedUpdateWithoutStudyLogsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
@@ -856,6 +932,8 @@ export type UserCreateWithoutChatSessionsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
@@ -871,6 +949,8 @@ export type UserUncheckedCreateWithoutChatSessionsInput = {
   name?: string | null
   examType?: string | null
   dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
@@ -902,6 +982,8 @@ export type UserUpdateWithoutChatSessionsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
@@ -917,6 +999,8 @@ export type UserUncheckedUpdateWithoutChatSessionsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
@@ -999,6 +1083,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   examType?: boolean
   dailyGoal?: boolean
+  apiKey?: boolean
+  aiProvider?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   wordProgress?: boolean | Prisma.User$wordProgressArgs<ExtArgs>
@@ -1016,6 +1102,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   examType?: boolean
   dailyGoal?: boolean
+  apiKey?: boolean
+  aiProvider?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1027,6 +1115,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   examType?: boolean
   dailyGoal?: boolean
+  apiKey?: boolean
+  aiProvider?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1038,11 +1128,13 @@ export type UserSelectScalar = {
   name?: boolean
   examType?: boolean
   dailyGoal?: boolean
+  apiKey?: boolean
+  aiProvider?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "name" | "examType" | "dailyGoal" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "name" | "examType" | "dailyGoal" | "apiKey" | "aiProvider" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   wordProgress?: boolean | Prisma.User$wordProgressArgs<ExtArgs>
   studyLogs?: boolean | Prisma.User$studyLogsArgs<ExtArgs>
@@ -1070,6 +1162,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string | null
     examType: string | null
     dailyGoal: number
+    apiKey: string | null
+    aiProvider: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1506,6 +1600,8 @@ export interface UserFieldRefs {
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly examType: Prisma.FieldRef<"User", 'String'>
   readonly dailyGoal: Prisma.FieldRef<"User", 'Int'>
+  readonly apiKey: Prisma.FieldRef<"User", 'String'>
+  readonly aiProvider: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }

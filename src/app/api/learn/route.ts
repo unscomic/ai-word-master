@@ -13,10 +13,10 @@ export async function POST(request: Request) {
 
     const { wordbookId, count = 10 } = await request.json()
 
-    // 获取用户进度
+    // 获取用户进度 + AI 配置
     const userWithProgress = await prisma.user.findUnique({
       where: { id: user.id },
-      select: { dailyGoal: true, examType: true },
+      select: { dailyGoal: true, examType: true, apiKey: true, aiProvider: true },
     })
 
     const targetCount = count || userWithProgress?.dailyGoal || 20
@@ -62,6 +62,7 @@ export async function POST(request: Request) {
           w.id,
           w.word,
           userWithProgress?.examType,
+          { apiKey: userWithProgress?.apiKey, provider: userWithProgress?.aiProvider },
         )
         return {
           id: w.id,
