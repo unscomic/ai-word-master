@@ -259,6 +259,7 @@ export type UserWhereInput = {
   wordProgress?: Prisma.WordProgressListRelationFilter
   studyLogs?: Prisma.StudyLogListRelationFilter
   chatSessions?: Prisma.ChatSessionListRelationFilter
+  wordbooks?: Prisma.WordbookListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
 }
@@ -277,6 +278,7 @@ export type UserOrderByWithRelationInput = {
   wordProgress?: Prisma.WordProgressOrderByRelationAggregateInput
   studyLogs?: Prisma.StudyLogOrderByRelationAggregateInput
   chatSessions?: Prisma.ChatSessionOrderByRelationAggregateInput
+  wordbooks?: Prisma.WordbookOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
@@ -298,6 +300,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   wordProgress?: Prisma.WordProgressListRelationFilter
   studyLogs?: Prisma.StudyLogListRelationFilter
   chatSessions?: Prisma.ChatSessionListRelationFilter
+  wordbooks?: Prisma.WordbookListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
 }, "id" | "email">
@@ -350,6 +353,7 @@ export type UserCreateInput = {
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
@@ -368,6 +372,7 @@ export type UserUncheckedCreateInput = {
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
@@ -386,6 +391,7 @@ export type UserUpdateInput = {
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
@@ -404,6 +410,7 @@ export type UserUncheckedUpdateInput = {
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -499,6 +506,11 @@ export type UserScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -545,6 +557,22 @@ export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
   upsert?: Prisma.UserUpsertWithoutSessionsInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsInput, Prisma.UserUpdateWithoutSessionsInput>, Prisma.UserUncheckedUpdateWithoutSessionsInput>
+}
+
+export type UserCreateNestedOneWithoutWordbooksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWordbooksInput, Prisma.UserUncheckedCreateWithoutWordbooksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWordbooksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutWordbooksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWordbooksInput, Prisma.UserUncheckedCreateWithoutWordbooksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWordbooksInput
+  upsert?: Prisma.UserUpsertWithoutWordbooksInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWordbooksInput, Prisma.UserUpdateWithoutWordbooksInput>, Prisma.UserUncheckedUpdateWithoutWordbooksInput>
 }
 
 export type UserCreateNestedOneWithoutWordProgressInput = {
@@ -603,6 +631,7 @@ export type UserCreateWithoutAccountsInput = {
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
 
@@ -620,6 +649,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -653,6 +683,7 @@ export type UserUpdateWithoutAccountsInput = {
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
 
@@ -670,6 +701,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -687,6 +719,7 @@ export type UserCreateWithoutSessionsInput = {
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
 }
 
@@ -704,6 +737,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -737,6 +771,7 @@ export type UserUpdateWithoutSessionsInput = {
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
 }
 
@@ -754,7 +789,96 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutWordbooksInput = {
+  id?: string
+  email: string
+  password: string
+  name?: string | null
+  examType?: string | null
+  dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
+  studyLogs?: Prisma.StudyLogCreateNestedManyWithoutUserInput
+  chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutWordbooksInput = {
+  id?: string
+  email: string
+  password: string
+  name?: string | null
+  examType?: string | null
+  dailyGoal?: number
+  apiKey?: string | null
+  aiProvider?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
+  studyLogs?: Prisma.StudyLogUncheckedCreateNestedManyWithoutUserInput
+  chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutWordbooksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutWordbooksInput, Prisma.UserUncheckedCreateWithoutWordbooksInput>
+}
+
+export type UserUpsertWithoutWordbooksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutWordbooksInput, Prisma.UserUncheckedUpdateWithoutWordbooksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutWordbooksInput, Prisma.UserUncheckedCreateWithoutWordbooksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutWordbooksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutWordbooksInput, Prisma.UserUncheckedUpdateWithoutWordbooksInput>
+}
+
+export type UserUpdateWithoutWordbooksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
+  studyLogs?: Prisma.StudyLogUpdateManyWithoutUserNestedInput
+  chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutWordbooksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dailyGoal?: Prisma.IntFieldUpdateOperationsInput | number
+  apiKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
+  studyLogs?: Prisma.StudyLogUncheckedUpdateManyWithoutUserNestedInput
+  chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWordProgressInput = {
@@ -770,6 +894,7 @@ export type UserCreateWithoutWordProgressInput = {
   updatedAt?: Date | string
   studyLogs?: Prisma.StudyLogCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
@@ -787,6 +912,7 @@ export type UserUncheckedCreateWithoutWordProgressInput = {
   updatedAt?: Date | string
   studyLogs?: Prisma.StudyLogUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
@@ -820,6 +946,7 @@ export type UserUpdateWithoutWordProgressInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   studyLogs?: Prisma.StudyLogUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
@@ -837,6 +964,7 @@ export type UserUncheckedUpdateWithoutWordProgressInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   studyLogs?: Prisma.StudyLogUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -854,6 +982,7 @@ export type UserCreateWithoutStudyLogsInput = {
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
@@ -871,6 +1000,7 @@ export type UserUncheckedCreateWithoutStudyLogsInput = {
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
@@ -904,6 +1034,7 @@ export type UserUpdateWithoutStudyLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
@@ -921,6 +1052,7 @@ export type UserUncheckedUpdateWithoutStudyLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -938,6 +1070,7 @@ export type UserCreateWithoutChatSessionsInput = {
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
@@ -955,6 +1088,7 @@ export type UserUncheckedCreateWithoutChatSessionsInput = {
   updatedAt?: Date | string
   wordProgress?: Prisma.WordProgressUncheckedCreateNestedManyWithoutUserInput
   studyLogs?: Prisma.StudyLogUncheckedCreateNestedManyWithoutUserInput
+  wordbooks?: Prisma.WordbookUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
@@ -988,6 +1122,7 @@ export type UserUpdateWithoutChatSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
@@ -1005,6 +1140,7 @@ export type UserUncheckedUpdateWithoutChatSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wordProgress?: Prisma.WordProgressUncheckedUpdateManyWithoutUserNestedInput
   studyLogs?: Prisma.StudyLogUncheckedUpdateManyWithoutUserNestedInput
+  wordbooks?: Prisma.WordbookUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -1018,6 +1154,7 @@ export type UserCountOutputType = {
   wordProgress: number
   studyLogs: number
   chatSessions: number
+  wordbooks: number
   accounts: number
   sessions: number
 }
@@ -1026,6 +1163,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   wordProgress?: boolean | UserCountOutputTypeCountWordProgressArgs
   studyLogs?: boolean | UserCountOutputTypeCountStudyLogsArgs
   chatSessions?: boolean | UserCountOutputTypeCountChatSessionsArgs
+  wordbooks?: boolean | UserCountOutputTypeCountWordbooksArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
 }
@@ -1064,6 +1202,13 @@ export type UserCountOutputTypeCountChatSessionsArgs<ExtArgs extends runtime.Typ
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountWordbooksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WordbookWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AccountWhereInput
 }
@@ -1090,6 +1235,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   wordProgress?: boolean | Prisma.User$wordProgressArgs<ExtArgs>
   studyLogs?: boolean | Prisma.User$studyLogsArgs<ExtArgs>
   chatSessions?: boolean | Prisma.User$chatSessionsArgs<ExtArgs>
+  wordbooks?: boolean | Prisma.User$wordbooksArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1139,6 +1285,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   wordProgress?: boolean | Prisma.User$wordProgressArgs<ExtArgs>
   studyLogs?: boolean | Prisma.User$studyLogsArgs<ExtArgs>
   chatSessions?: boolean | Prisma.User$chatSessionsArgs<ExtArgs>
+  wordbooks?: boolean | Prisma.User$wordbooksArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1152,6 +1299,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     wordProgress: Prisma.$WordProgressPayload<ExtArgs>[]
     studyLogs: Prisma.$StudyLogPayload<ExtArgs>[]
     chatSessions: Prisma.$ChatSessionPayload<ExtArgs>[]
+    wordbooks: Prisma.$WordbookPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
@@ -1563,6 +1711,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   wordProgress<T extends Prisma.User$wordProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$wordProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WordProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   studyLogs<T extends Prisma.User$studyLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   chatSessions<T extends Prisma.User$chatSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  wordbooks<T extends Prisma.User$wordbooksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$wordbooksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WordbookPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2064,6 +2213,30 @@ export type User$chatSessionsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ChatSessionScalarFieldEnum | Prisma.ChatSessionScalarFieldEnum[]
+}
+
+/**
+ * User.wordbooks
+ */
+export type User$wordbooksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Wordbook
+   */
+  select?: Prisma.WordbookSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Wordbook
+   */
+  omit?: Prisma.WordbookOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WordbookInclude<ExtArgs> | null
+  where?: Prisma.WordbookWhereInput
+  orderBy?: Prisma.WordbookOrderByWithRelationInput | Prisma.WordbookOrderByWithRelationInput[]
+  cursor?: Prisma.WordbookWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WordbookScalarFieldEnum | Prisma.WordbookScalarFieldEnum[]
 }
 
 /**

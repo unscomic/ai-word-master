@@ -21,6 +21,7 @@ model User {
   wordProgress  WordProgress[]
   studyLogs     StudyLog[]
   chatSessions  ChatSession[]
+  wordbooks     Wordbook[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -65,7 +66,10 @@ model Wordbook {
   name        String
   description String?
   isPreset    Boolean        @default(false)
+  userId      String?
+  user        User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
   words       WordbookWord[]
+  createdAt   DateTime       @default(now())
 }
 
 model WordbookWord {

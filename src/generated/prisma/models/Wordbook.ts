@@ -29,6 +29,8 @@ export type WordbookMinAggregateOutputType = {
   name: string | null
   description: string | null
   isPreset: boolean | null
+  userId: string | null
+  createdAt: Date | null
 }
 
 export type WordbookMaxAggregateOutputType = {
@@ -36,6 +38,8 @@ export type WordbookMaxAggregateOutputType = {
   name: string | null
   description: string | null
   isPreset: boolean | null
+  userId: string | null
+  createdAt: Date | null
 }
 
 export type WordbookCountAggregateOutputType = {
@@ -43,6 +47,8 @@ export type WordbookCountAggregateOutputType = {
   name: number
   description: number
   isPreset: number
+  userId: number
+  createdAt: number
   _all: number
 }
 
@@ -52,6 +58,8 @@ export type WordbookMinAggregateInputType = {
   name?: true
   description?: true
   isPreset?: true
+  userId?: true
+  createdAt?: true
 }
 
 export type WordbookMaxAggregateInputType = {
@@ -59,6 +67,8 @@ export type WordbookMaxAggregateInputType = {
   name?: true
   description?: true
   isPreset?: true
+  userId?: true
+  createdAt?: true
 }
 
 export type WordbookCountAggregateInputType = {
@@ -66,6 +76,8 @@ export type WordbookCountAggregateInputType = {
   name?: true
   description?: true
   isPreset?: true
+  userId?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -146,6 +158,8 @@ export type WordbookGroupByOutputType = {
   name: string
   description: string | null
   isPreset: boolean
+  userId: string | null
+  createdAt: Date
   _count: WordbookCountAggregateOutputType | null
   _min: WordbookMinAggregateOutputType | null
   _max: WordbookMaxAggregateOutputType | null
@@ -174,6 +188,9 @@ export type WordbookWhereInput = {
   name?: Prisma.StringFilter<"Wordbook"> | string
   description?: Prisma.StringNullableFilter<"Wordbook"> | string | null
   isPreset?: Prisma.BoolFilter<"Wordbook"> | boolean
+  userId?: Prisma.StringNullableFilter<"Wordbook"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Wordbook"> | Date | string
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   words?: Prisma.WordbookWordListRelationFilter
 }
 
@@ -182,6 +199,9 @@ export type WordbookOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   isPreset?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
   words?: Prisma.WordbookWordOrderByRelationAggregateInput
 }
 
@@ -193,6 +213,9 @@ export type WordbookWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Wordbook"> | string
   description?: Prisma.StringNullableFilter<"Wordbook"> | string | null
   isPreset?: Prisma.BoolFilter<"Wordbook"> | boolean
+  userId?: Prisma.StringNullableFilter<"Wordbook"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Wordbook"> | Date | string
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   words?: Prisma.WordbookWordListRelationFilter
 }, "id">
 
@@ -201,6 +224,8 @@ export type WordbookOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   isPreset?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.WordbookCountOrderByAggregateInput
   _max?: Prisma.WordbookMaxOrderByAggregateInput
   _min?: Prisma.WordbookMinOrderByAggregateInput
@@ -214,6 +239,8 @@ export type WordbookScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Wordbook"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Wordbook"> | string | null
   isPreset?: Prisma.BoolWithAggregatesFilter<"Wordbook"> | boolean
+  userId?: Prisma.StringNullableWithAggregatesFilter<"Wordbook"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Wordbook"> | Date | string
 }
 
 export type WordbookCreateInput = {
@@ -221,6 +248,8 @@ export type WordbookCreateInput = {
   name: string
   description?: string | null
   isPreset?: boolean
+  createdAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutWordbooksInput
   words?: Prisma.WordbookWordCreateNestedManyWithoutWordbookInput
 }
 
@@ -229,6 +258,8 @@ export type WordbookUncheckedCreateInput = {
   name: string
   description?: string | null
   isPreset?: boolean
+  userId?: string | null
+  createdAt?: Date | string
   words?: Prisma.WordbookWordUncheckedCreateNestedManyWithoutWordbookInput
 }
 
@@ -237,6 +268,8 @@ export type WordbookUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutWordbooksNestedInput
   words?: Prisma.WordbookWordUpdateManyWithoutWordbookNestedInput
 }
 
@@ -245,6 +278,8 @@ export type WordbookUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   words?: Prisma.WordbookWordUncheckedUpdateManyWithoutWordbookNestedInput
 }
 
@@ -253,6 +288,8 @@ export type WordbookCreateManyInput = {
   name: string
   description?: string | null
   isPreset?: boolean
+  userId?: string | null
+  createdAt?: Date | string
 }
 
 export type WordbookUpdateManyMutationInput = {
@@ -260,6 +297,7 @@ export type WordbookUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WordbookUncheckedUpdateManyInput = {
@@ -267,6 +305,18 @@ export type WordbookUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type WordbookListRelationFilter = {
+  every?: Prisma.WordbookWhereInput
+  some?: Prisma.WordbookWhereInput
+  none?: Prisma.WordbookWhereInput
+}
+
+export type WordbookOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type WordbookCountOrderByAggregateInput = {
@@ -274,6 +324,8 @@ export type WordbookCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   isPreset?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type WordbookMaxOrderByAggregateInput = {
@@ -281,6 +333,8 @@ export type WordbookMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   isPreset?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type WordbookMinOrderByAggregateInput = {
@@ -288,11 +342,55 @@ export type WordbookMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   isPreset?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type WordbookScalarRelationFilter = {
   is?: Prisma.WordbookWhereInput
   isNot?: Prisma.WordbookWhereInput
+}
+
+export type WordbookCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.WordbookCreateWithoutUserInput, Prisma.WordbookUncheckedCreateWithoutUserInput> | Prisma.WordbookCreateWithoutUserInput[] | Prisma.WordbookUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WordbookCreateOrConnectWithoutUserInput | Prisma.WordbookCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.WordbookCreateManyUserInputEnvelope
+  connect?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+}
+
+export type WordbookUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.WordbookCreateWithoutUserInput, Prisma.WordbookUncheckedCreateWithoutUserInput> | Prisma.WordbookCreateWithoutUserInput[] | Prisma.WordbookUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WordbookCreateOrConnectWithoutUserInput | Prisma.WordbookCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.WordbookCreateManyUserInputEnvelope
+  connect?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+}
+
+export type WordbookUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.WordbookCreateWithoutUserInput, Prisma.WordbookUncheckedCreateWithoutUserInput> | Prisma.WordbookCreateWithoutUserInput[] | Prisma.WordbookUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WordbookCreateOrConnectWithoutUserInput | Prisma.WordbookCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.WordbookUpsertWithWhereUniqueWithoutUserInput | Prisma.WordbookUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.WordbookCreateManyUserInputEnvelope
+  set?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  disconnect?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  delete?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  connect?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  update?: Prisma.WordbookUpdateWithWhereUniqueWithoutUserInput | Prisma.WordbookUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.WordbookUpdateManyWithWhereWithoutUserInput | Prisma.WordbookUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.WordbookScalarWhereInput | Prisma.WordbookScalarWhereInput[]
+}
+
+export type WordbookUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.WordbookCreateWithoutUserInput, Prisma.WordbookUncheckedCreateWithoutUserInput> | Prisma.WordbookCreateWithoutUserInput[] | Prisma.WordbookUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WordbookCreateOrConnectWithoutUserInput | Prisma.WordbookCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.WordbookUpsertWithWhereUniqueWithoutUserInput | Prisma.WordbookUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.WordbookCreateManyUserInputEnvelope
+  set?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  disconnect?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  delete?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  connect?: Prisma.WordbookWhereUniqueInput | Prisma.WordbookWhereUniqueInput[]
+  update?: Prisma.WordbookUpdateWithWhereUniqueWithoutUserInput | Prisma.WordbookUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.WordbookUpdateManyWithWhereWithoutUserInput | Prisma.WordbookUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.WordbookScalarWhereInput | Prisma.WordbookScalarWhereInput[]
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -313,11 +411,68 @@ export type WordbookUpdateOneRequiredWithoutWordsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WordbookUpdateToOneWithWhereWithoutWordsInput, Prisma.WordbookUpdateWithoutWordsInput>, Prisma.WordbookUncheckedUpdateWithoutWordsInput>
 }
 
+export type WordbookCreateWithoutUserInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isPreset?: boolean
+  createdAt?: Date | string
+  words?: Prisma.WordbookWordCreateNestedManyWithoutWordbookInput
+}
+
+export type WordbookUncheckedCreateWithoutUserInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isPreset?: boolean
+  createdAt?: Date | string
+  words?: Prisma.WordbookWordUncheckedCreateNestedManyWithoutWordbookInput
+}
+
+export type WordbookCreateOrConnectWithoutUserInput = {
+  where: Prisma.WordbookWhereUniqueInput
+  create: Prisma.XOR<Prisma.WordbookCreateWithoutUserInput, Prisma.WordbookUncheckedCreateWithoutUserInput>
+}
+
+export type WordbookCreateManyUserInputEnvelope = {
+  data: Prisma.WordbookCreateManyUserInput | Prisma.WordbookCreateManyUserInput[]
+}
+
+export type WordbookUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.WordbookWhereUniqueInput
+  update: Prisma.XOR<Prisma.WordbookUpdateWithoutUserInput, Prisma.WordbookUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.WordbookCreateWithoutUserInput, Prisma.WordbookUncheckedCreateWithoutUserInput>
+}
+
+export type WordbookUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.WordbookWhereUniqueInput
+  data: Prisma.XOR<Prisma.WordbookUpdateWithoutUserInput, Prisma.WordbookUncheckedUpdateWithoutUserInput>
+}
+
+export type WordbookUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.WordbookScalarWhereInput
+  data: Prisma.XOR<Prisma.WordbookUpdateManyMutationInput, Prisma.WordbookUncheckedUpdateManyWithoutUserInput>
+}
+
+export type WordbookScalarWhereInput = {
+  AND?: Prisma.WordbookScalarWhereInput | Prisma.WordbookScalarWhereInput[]
+  OR?: Prisma.WordbookScalarWhereInput[]
+  NOT?: Prisma.WordbookScalarWhereInput | Prisma.WordbookScalarWhereInput[]
+  id?: Prisma.StringFilter<"Wordbook"> | string
+  name?: Prisma.StringFilter<"Wordbook"> | string
+  description?: Prisma.StringNullableFilter<"Wordbook"> | string | null
+  isPreset?: Prisma.BoolFilter<"Wordbook"> | boolean
+  userId?: Prisma.StringNullableFilter<"Wordbook"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Wordbook"> | Date | string
+}
+
 export type WordbookCreateWithoutWordsInput = {
   id?: string
   name: string
   description?: string | null
   isPreset?: boolean
+  createdAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutWordbooksInput
 }
 
 export type WordbookUncheckedCreateWithoutWordsInput = {
@@ -325,6 +480,8 @@ export type WordbookUncheckedCreateWithoutWordsInput = {
   name: string
   description?: string | null
   isPreset?: boolean
+  userId?: string | null
+  createdAt?: Date | string
 }
 
 export type WordbookCreateOrConnectWithoutWordsInput = {
@@ -348,6 +505,8 @@ export type WordbookUpdateWithoutWordsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutWordbooksNestedInput
 }
 
 export type WordbookUncheckedUpdateWithoutWordsInput = {
@@ -355,6 +514,42 @@ export type WordbookUncheckedUpdateWithoutWordsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type WordbookCreateManyUserInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isPreset?: boolean
+  createdAt?: Date | string
+}
+
+export type WordbookUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  words?: Prisma.WordbookWordUpdateManyWithoutWordbookNestedInput
+}
+
+export type WordbookUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  words?: Prisma.WordbookWordUncheckedUpdateManyWithoutWordbookNestedInput
+}
+
+export type WordbookUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPreset?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -393,6 +588,9 @@ export type WordbookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name?: boolean
   description?: boolean
   isPreset?: boolean
+  userId?: boolean
+  createdAt?: boolean
+  user?: boolean | Prisma.Wordbook$userArgs<ExtArgs>
   words?: boolean | Prisma.Wordbook$wordsArgs<ExtArgs>
   _count?: boolean | Prisma.WordbookCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["wordbook"]>
@@ -402,6 +600,9 @@ export type WordbookSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   description?: boolean
   isPreset?: boolean
+  userId?: boolean
+  createdAt?: boolean
+  user?: boolean | Prisma.Wordbook$userArgs<ExtArgs>
 }, ExtArgs["result"]["wordbook"]>
 
 export type WordbookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -409,6 +610,9 @@ export type WordbookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   description?: boolean
   isPreset?: boolean
+  userId?: boolean
+  createdAt?: boolean
+  user?: boolean | Prisma.Wordbook$userArgs<ExtArgs>
 }, ExtArgs["result"]["wordbook"]>
 
 export type WordbookSelectScalar = {
@@ -416,19 +620,27 @@ export type WordbookSelectScalar = {
   name?: boolean
   description?: boolean
   isPreset?: boolean
+  userId?: boolean
+  createdAt?: boolean
 }
 
-export type WordbookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "isPreset", ExtArgs["result"]["wordbook"]>
+export type WordbookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "isPreset" | "userId" | "createdAt", ExtArgs["result"]["wordbook"]>
 export type WordbookInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Wordbook$userArgs<ExtArgs>
   words?: boolean | Prisma.Wordbook$wordsArgs<ExtArgs>
   _count?: boolean | Prisma.WordbookCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type WordbookIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type WordbookIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type WordbookIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Wordbook$userArgs<ExtArgs>
+}
+export type WordbookIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Wordbook$userArgs<ExtArgs>
+}
 
 export type $WordbookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Wordbook"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs> | null
     words: Prisma.$WordbookWordPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -436,6 +648,8 @@ export type $WordbookPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     name: string
     description: string | null
     isPreset: boolean
+    userId: string | null
+    createdAt: Date
   }, ExtArgs["result"]["wordbook"]>
   composites: {}
 }
@@ -830,6 +1044,7 @@ readonly fields: WordbookFieldRefs;
  */
 export interface Prisma__WordbookClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.Wordbook$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Wordbook$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   words<T extends Prisma.Wordbook$wordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Wordbook$wordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WordbookWordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -864,6 +1079,8 @@ export interface WordbookFieldRefs {
   readonly name: Prisma.FieldRef<"Wordbook", 'String'>
   readonly description: Prisma.FieldRef<"Wordbook", 'String'>
   readonly isPreset: Prisma.FieldRef<"Wordbook", 'Boolean'>
+  readonly userId: Prisma.FieldRef<"Wordbook", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Wordbook", 'DateTime'>
 }
     
 
@@ -1116,6 +1333,10 @@ export type WordbookCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * The data used to create many Wordbooks.
    */
   data: Prisma.WordbookCreateManyInput | Prisma.WordbookCreateManyInput[]
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WordbookIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1186,6 +1407,10 @@ export type WordbookUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many Wordbooks to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WordbookIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1252,6 +1477,25 @@ export type WordbookDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Wordbooks to delete.
    */
   limit?: number
+}
+
+/**
+ * Wordbook.user
+ */
+export type Wordbook$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

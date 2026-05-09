@@ -133,7 +133,9 @@ export const WordbookScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  isPreset: 'isPreset'
+  isPreset: 'isPreset',
+  userId: 'userId',
+  createdAt: 'createdAt'
 } as const
 
 export type WordbookScalarFieldEnum = (typeof WordbookScalarFieldEnum)[keyof typeof WordbookScalarFieldEnum]
